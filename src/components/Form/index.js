@@ -83,14 +83,16 @@ const Form = () => {
   }
 
   return (
-    <form>
+    <form className={classes.formSection}>
       <FormControl
         label={selectUserLabel}
         validationFunction={validationFunction}
         selectedUserId={selectedUserId}
         setSelectedUserId={setSelectedUserId}
         errorMessage={errorMessage}
-      />
+     / >
+        
+    
       {errorMessage && <div data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
       {selectedUserId < 0 ? null : 
         <div>

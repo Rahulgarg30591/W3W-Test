@@ -49,10 +49,52 @@
   top: 185px;
 }
 
-.form {
-  position: relative;
-  width: 675px;
-  height: 499px;
-
+.formSection {
+  position: absolute;
+max-width: 1425px;
   background: #ffffff;
+  padding: 50px;
+  margin: 0px auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
+
+.formSection label{
+  margin-bottom: 5px;
+  display: block;
+  margin-top: 35px;
+}
+
+.formSection button {
+  margin-top: 45px;
+  background-color: #e11f26;
+  color: #fff;
+  width: 22%;
+  font-size: 16px;
+  border-radius: 2px;
+  height: 48px;
+  border: none;
+}
+
+.formSection input {
+width: 100%;
+border: none;
+padding: 7px 0px;
+background-color:#fff !important;
+border-bottom: 1.5px solid #657e8d;
+}
+.formSection hr{
+  display: none;
+}
+
+.formSection input::placeholder{
+  color: #000;
+}
+
+.formSection input::focus {
+  outline: none;
+}
+
+

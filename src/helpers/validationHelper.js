@@ -1,12 +1,19 @@
-const minLength = 5;
-const maxLength = 50;
+import errorMessages from "../static/errorMessage";
 
-const inputValidator = (input) => {
+const inputValidator = (input, validationType) => {
   const inputLength = input.trim().length;
-  if (inputLength === 0 || inputLength < minLength || inputLength > maxLength) {
-    return false;
+
+  if (inputLength === 0) {
+    return {
+      isValid: false,
+      errorMessage: errorMessages[validationType],
+    }
   }
-  return true;
+
+  return {
+    isValid: true,
+    errorMessage: ''
+  };
 };
 
 export default inputValidator;

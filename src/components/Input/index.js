@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import classes from './Input.module.css'
 import inputValidator from '../../helpers/validationHelper';
 
 const Input = React.forwardRef((props, ref) => {
-    const { label, inputId, placeholderText, isValid, setIsValid, setValue } = props;
+    const {
+        label, inputId, placeholderText,
+        isValid, setIsValid, setValue,
+        isShowErrorMessage, setIsShowErrorMessage, validationType
+    } = props;
 
-    const inputBlurHandler = (event) => {
-        const inputVal = event.target.value;
-        setIsValid(inputValidator(inputVal));
+    const [errorMessage, setErrorMessage] = useState(''); 
+
+    /**
+     * Input field Blur Handler.
+     * @param {Event Object} Callback Event Object
+     */
+    const inputBlurHandler = ({ target }) => {
+        const inputVal = target.value;
+        const validationInfo = inputValidator(inputVal, validationType);
+        setIsValid(validationInfo.isValid);
+        setIsShowErrorMessage(!validationInfo.isValid);
         setValue(inputVal);
+        setErrorMessage(validationInfo.errorMessage);
     }
 
+    /**
+     * Input field Focus Handler.
+     * @param {Event Object} Callback Event Object
+     */
     const inputFocusHandler = () => {
-        setIsValid(true);
+        setIsShowErrorMessage(false);
     }
+
+    useEffect(() => {
+        if (isShowErrorMessage) {
+            inputBlurHandler({ target: { value: ref.current.value }});
+        }
+      }, [isShowErrorMessage]);
 
     const inputValidity = isValid ? '' : classes.invalid; 
+
     return (
         <div>
             <label htmlFor={inputId}>{label}</label>
@@ -28,6 +52,7 @@ const Input = React.forwardRef((props, ref) => {
                 onBlur={inputBlurHandler} 
                 onFocus={inputFocusHandler}
             />
+            {isShowErrorMessage ? errorMessage : ''}
             <hr />
         </div>
     )

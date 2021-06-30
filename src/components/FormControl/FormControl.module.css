@@ -1,5 +1,8 @@
 .selectors {
     box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 40px 15px 40px;
     width: 136.94px;
     flex: 1;
 margin-left: 5px;
@@ -12,10 +15,7 @@ body {
 .selectors.unselected {
   background: #ffffff;
   border: 1px solid #e0e0e0;
-  font-size: 14px;
-  padding: 20px 40px 15px 40px;
-  text-align: center;
-
+  /*padding: 20px 40px 15px 40px;*/
 
 }
 
@@ -28,6 +28,7 @@ body {
 .group96 {
 display: flex;
 margin: 35px 0px;
+overflow-x: auto;
 }
 
 .label {

@@ -1,54 +1,3 @@
-.label {
-  position: absolute;
-  height: 14px;
-  left: 0px;
-  right: 0px;
-  top: 6px;
-
-  font-family: Source Sans Pro;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  /* or 143% */
-
-  display: flex;
-  align-items: center;
-
-  /* Action/Blue */
-
-  color: #0a3049;
-}
-
-
-.underline {
-  position: absolute;
-  height: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 1px;
-
-  /* Brand/Blue */
-
-  border: 1px solid #0a3049;
-}
-
-.body {
-  position: absolute;
-  width: 579px;
-  height: 72px;
-  left: 38px;
-  top: 261px;
-}
-
-.title {
-  position: absolute;
-  width: 579px;
-  height: 72px;
-  left: 38px;
-  top: 185px;
-}
-
 .formSection {
   position: absolute;
 max-width: 1425px;
@@ -95,6 +44,15 @@ border-bottom: 1.5px solid #657e8d;
 
 .formSection input::focus {
   outline: none;
+}
+
+.formSection .error {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ed684e;
 }
 
 

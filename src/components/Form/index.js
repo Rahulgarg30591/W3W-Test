@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import classes from "./Form.module.css";
 import FormControl from "../FormControl";
 import Input from "../Input";
-import inputValidator from "../../helpers/validationHelper";
+import makeRequest from "../../helpers/httpHelper";
 
 const Form = () => {
   const selectUserLabel = "Please select the user";
@@ -12,8 +12,8 @@ const Form = () => {
   const [selectedUserId, setSelectedUserId] = useState(-1);
   const [errorMessage, setErrorMessage] = useState(errorMessageValue);
 
-  const [isTitleValid, setIsTitleValid] = useState(false);
-  const [isBodyValid, setIsBodyValid] = useState(false);
+  const [isTitleValid, setIsTitleValid] = useState(true);
+  const [isBodyValid, setIsBodyValid] = useState(true);
   const [isShowTitleErrorMessage, setIsShowTitleErrorMessage] = useState(false);
   const [isShowBodyErrorMessage, setIsShowBodyErrorMessage] = useState(false);
 
@@ -27,25 +27,43 @@ const Form = () => {
    * Callback after form submission.
    */
   const clearForm = () => {
-    setErrorMessage(null);
-    setSelectedUserId(-1);
-    titleRef.current.value = "";
-    bodyRef.current.value = "";
+    setErrorMessage("");
+    setIsTitleValid(true);
+    setIsBodyValid(true);
+    setIsShowTitleErrorMessage(false);
+    setIsShowBodyErrorMessage(false);
+    if (titleRef.current) {
+      titleRef.current.value = "";
+    }
+    if (bodyRef.current) {
+      bodyRef.current.value = "";
+    }
+   
   };
+
+  /**
+   * Success Callback
+   */
+   const successCallback = () => {
+      setSelectedUserId(-1);
+      clearForm();
+  }
 
   /**
    * Submit Form function.
    */
   const submitForm = () => {
-    axios.post("https://react-http-30eb3-default-rtdb.firebaseo.com/users.json", {
+    const requestObj = {
+      url: "https://react-http-30eb3-default-rtdb.firebaseio.com/users.json",
+      //url: "https://jsonplaceholder.typicode.com/posts",
+      method: 'post',
+      data: {
         userId: selectedUserId,
         title: title,
         body: body,
-      })
-      .then(clearForm)
-      .catch((err) => {
-        setErrorMessage(err.message);
-      });
+      }
+    };
+    makeRequest(requestObj, successCallback, (err) => setErrorMessage(err.message));
   };
 
   /**
@@ -53,18 +71,18 @@ const Form = () => {
    * And this function does the same.
    */
   const submitHandler = () => {
-    let errorMsg = null;
-
     if (isTitleValid && isBodyValid) {
-      submitForm();
+      if(title.trim().length === 0 || body.trim().length === 0) {
+        setErrorMessage('Please enter the mandatory fields');
+        setIsShowTitleErrorMessage(true);
+        setIsShowBodyErrorMessage(true);
+      } else {
+        submitForm();
+      }
     } else {
+      setErrorMessage('Please enter the mandatory fields');
       setIsShowTitleErrorMessage(true);
       setIsShowBodyErrorMessage(true);
-    }
-
-    if (errorMsg) {
-      setErrorMessage(errorMsg);
-    } else {
     }
   };
 
@@ -78,8 +96,8 @@ const Form = () => {
       setErrorMessage(errorMessageValue);
     } else {
       setSelectedUserId(id);
-      setErrorMessage('');
     }
+    clearForm();
   }
 
   return (
@@ -88,11 +106,8 @@ const Form = () => {
         label={selectUserLabel}
         validationFunction={validationFunction}
         selectedUserId={selectedUserId}
-        setSelectedUserId={setSelectedUserId}
-        errorMessage={errorMessage}
-     / >
-        
-    
+        setErrorMessage={setErrorMessage}
+      />
       {errorMessage && <div data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
       {selectedUserId < 0 ? null : 
         <div>

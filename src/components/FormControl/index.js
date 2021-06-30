@@ -1,12 +1,10 @@
-import axios from "axios";
 import classes from "./FormControl.module.css";
 import { useEffect, useState } from "react";
 import makeRequest from "../../helpers/httpHelper";
 
 const FormControl = (props) => {
-  const { label, selectedUser, validationFunction } = props;
+  const { label, selectedUserId, validationFunction, setErrorMessage } = props;
   const [userData, setUserData] = useState([]);
-  const [networkErrorMessage, setNetworkErrorMessage] = useState('');
 
   /**
    * Success Callback, getting data 
@@ -26,7 +24,7 @@ const FormControl = (props) => {
       url: "https://jsonplaceholder.typicode.com/users",
       method: 'get'
     };
-    makeRequest(requestObj,successCallback, (err) => setNetworkErrorMessage(err.message));
+    makeRequest(requestObj,successCallback, (err) => setErrorMessage(err.message));
   };
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const FormControl = (props) => {
       id={user.id}
       data-role="selector"
       className={`${classes.selectors} ${
-        selectedUser !== null && selectedUser === user.id.toString()
+        selectedUserId !== -1 && selectedUserId === user.id
           ? classes.selected
           : classes.unselected
       }`}
@@ -60,7 +58,6 @@ const FormControl = (props) => {
       {userGroup && userGroup.length > 0 && (
         <div data-testid="userGroup" className={classes.group96}>{userGroup}</div>
       )}
-      {networkErrorMessage && <span className={classes.error}>{networkErrorMessage}</span>}
     </form>
   );
 };

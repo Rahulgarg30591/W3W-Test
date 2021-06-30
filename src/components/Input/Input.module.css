@@ -15,3 +15,12 @@
     border-color: #aa0b20;
     background-color: #ffeff1;
 }
+
+.error {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ed684e;
+}

@@ -1,0 +1,100 @@
+.selectors {
+    box-sizing: border-box;
+    width: 136.94px;
+    flex: 1;
+margin-left: 5px;
+}
+
+.selectors.unselected {
+  /* Background/Light/1 Top */
+
+  background: #ffffff;
+  /* Foreground/Dark/3 Low */
+
+  border: 1px solid #c2c2c2;
+
+/*height: 72px;*/
+
+}
+
+.selectors.selected {
+  box-sizing: border-box;
+
+  /* Background/Light/2 Middle */
+
+  background: #dbeffa;
+  /* Marketing/Turquoise */
+
+  border: 4px solid #3cabaa;
+/*height: 72px;*/
+}
+
+.group96 {
+  width: 580px;
+/*height: 72px;*/
+background: #223946;
+display: flex;
+}
+
+.label {
+  position: absolute;
+  width: 861px;
+  /*height: 24px;*/
+  left: 41px;
+  top: 43px;
+
+  /* Large Displays/body-small */
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  color: #0a3049;
+}
+
+.error {
+  width: 861px;
+/*height: 24px;*/
+
+  /* Large Displays/body-small */
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  color: #ed684e;
+}
+
+.formControl {
+  position: relative;
+  width: 675px;
+  /*height: 219px;*/
+
+  background: #f8f9fa;
+}
+
+.text {
+  position: absolute;
+  left: 16px;
+  right: 15.94px;
+  top: 0%;
+  bottom: 0%;
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+
+  /* Brand/Secondary */
+
+  color: #0a3049;
+}

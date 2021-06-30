@@ -1,0 +1,17 @@
+.text {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    /* or 133% */
+  
+    /* Action/Blue */
+  
+    color: #0a3049;
+  }
+
+.text.invalid {
+    border-color: #aa0b20;
+    background-color: #ffeff1;
+}

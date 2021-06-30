@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import classes from "./FormControl.module.css";
 import FormControl from "./FormControl";
 import Input from "./Input";
-import inputValidator from "../Helpers1/ValidationHelper";
+import inputValidator from "../Helpers1/ValidationHelper1";
 
 const Form = () => {
   const [userData, setUserData] = useState([]);

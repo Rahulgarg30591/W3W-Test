@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Input.module.css'
-import inputValidator from '../helpers/validationHelper';
+import inputValidator from '../../helpers/validationHelper';
 
 const Input = React.forwardRef((props, ref) => {
     const { label, inputId, placeholderText, isValid, setIsValid, setValue } = props;

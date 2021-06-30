@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import classes from "./FormControl.module.css";
-import FormControl from "./FormControl";
-import Input from "./Input";
-import inputValidator from "../helpers/validationHelper";
+import classes from "./Form.module.css";
+import FormControl from "../FormControl";
+import Input from "../Input";
+import inputValidator from "../../helpers/validationHelper";
 
 const Form = () => {
   const [userData, setUserData] = useState([]);

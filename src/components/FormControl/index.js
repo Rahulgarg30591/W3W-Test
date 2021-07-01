@@ -36,17 +36,24 @@ const FormControl = (props) => {
     validationFunction(id);
   };
 
+  const keyDownHandler = (event) => {
+    if(event.keyCode && event.keyCode === 13) {
+      userClickHandler(event);
+    }
+  }
+
   const userGroup = userData && userData.map((user) => (
     <div
       key={user.id}
       id={user.id}
-      data-role="selector"
+      tabIndex="0"
       className={`${classes.selectors} ${
         selectedUserId !== -1 && selectedUserId === user.id
           ? classes.selected
           : classes.unselected
       }`}
       onClick={userClickHandler}
+      onKeyDown={keyDownHandler}
     >
       {user.name}
     </div>

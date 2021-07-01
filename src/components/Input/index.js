@@ -53,7 +53,7 @@ const Input = React.forwardRef((props, ref) => {
                 onBlur={inputBlurHandler} 
                 onFocus={inputFocusHandler}
             />
-            <span className={classes.error}>{isShowErrorMessage ? errorMessage : ''}</span>
+            <span className={classes.error} data-testid="inputError">{isShowErrorMessage ? errorMessage : ''}</span>
             <hr />
         </div>
     )

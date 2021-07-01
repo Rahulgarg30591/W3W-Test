@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useRef } from "react";
 import classes from "./Form.module.css";
 import FormControl from "../FormControl";
@@ -38,7 +37,6 @@ const Form = () => {
     if (bodyRef.current) {
       bodyRef.current.value = "";
     }
-   
   };
 
   /**
@@ -100,15 +98,21 @@ const Form = () => {
     clearForm();
   }
 
+  const keyDownHandler = (e) => {
+    if (e.keyCode === 27) {
+      setSelectedUserId(-1);
+    }
+  }
+
   return (
-    <form className={classes.formSection}>
+    <form className={classes.formSection} onKeyDown={keyDownHandler}>
       <FormControl
         label={selectUserLabel}
         validationFunction={validationFunction}
         selectedUserId={selectedUserId}
         setErrorMessage={setErrorMessage}
       />
-      {errorMessage && <div data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
+      {errorMessage && <div id="errorMsg" data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
       {selectedUserId < 0 ? null : 
         <div>
           <Input
@@ -135,7 +139,7 @@ const Form = () => {
             setIsShowErrorMessage={setIsShowBodyErrorMessage}
             validationType="mandatory"
           />
-          <button aria-label="Submit" onClick={submitHandler} type="button">Submit</button>
+          <button id="submit" aria-describedby="errorMsg" onClick={submitHandler} type="button">Submit</button>
         </div>
       }
     </form>

@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "e2eTest": "node .\/src\/E2E_Test\/form-submit-tests.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

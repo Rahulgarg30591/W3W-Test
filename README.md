@@ -30,7 +30,7 @@ Launches the test runner in the interactive watch mode.\
 
 ## Steps to run the E2E test (using puppeteer)
 
-### `node .\src\E2E_Test\form-submit-tests.js`
+### `npm run e2eTest`
 
 This will run all the E2E test scenarios created and take screenshots of the screen (placed inside same folder)
 Below are 4 scenarios tested
@@ -41,12 +41,14 @@ Below are 4 scenarios tested
 
 
 ## Program Screenshots
-
 This is how the program looks when it is loaded
+![screenshot](submitSuccess.png?raw=true "Submit Success")
 
 When any user is selected, the Title and Body Label and Textboxes are displayed
+![screenshot](submitFailure.png?raw=true "Submit Failure")
 
 If Submit button is clicked without entering imformation in Title and Body (or any one of them as well), error is displayed as mandatory fields validation are applied
+![screenshot](submitWithoutBody.png?raw=true "Submit Without Body")
+![screenshot](submitWithoutTitle.png?raw=true "Submit Without Title")
 
 Once submited, initial load stage is achived
-

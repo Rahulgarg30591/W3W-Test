@@ -32,13 +32,6 @@ const Input = React.forwardRef((props, ref) => {
         setIsShowErrorMessage(false);
     }
 
-    /* ************ Why do we need this? Ask ***************** */
-    useEffect(() => {
-        if (isShowErrorMessage) {
-            inputBlurHandler({ target: { value: ref.current.value }});
-        }
-      }, [isShowErrorMessage]);
-
     const inputValidity = isValid ? '' : classes.invalid; 
 
     return (

@@ -63,7 +63,7 @@ const FormControl = (props) => {
     <form className={classes.formControl}>
       <label>{label}</label>
       {userGroup && userGroup.length > 0 && (
-        <div data-testid="userGroup" className={classes.group96}>{userGroup}</div>
+        <div id="userGroup" data-testid="userGroup" className={classes.group96}>{userGroup}</div>
       )}
     </form>
   );

@@ -3,6 +3,7 @@ import classes from "./Form.module.css";
 import FormControl from "../FormControl";
 import Input from "../Input";
 import makeRequest from "../../helpers/httpHelper";
+import apiUrl from "../../static/urlConfig";
 
 const Form = () => {
   const selectUserLabel = "Please select the user";
@@ -52,8 +53,7 @@ const Form = () => {
    */
   const submitForm = () => {
     const requestObj = {
-      url: "https://react-http-30eb3-default-rtdb.firebaseio.com/users.json",
-      //url: "https://jsonplaceholder.typicode.com/posts",
+      url: apiUrl.postData,
       method: 'post',
       data: {
         userId: selectedUserId,
@@ -98,9 +98,12 @@ const Form = () => {
     clearForm();
   }
 
-  /* *************Add description ************ */
-  const keyDownHandler = (e) => {
-    if (e.keyCode === 27) {
+  /**
+   * Escapr key down handler for keyboard interaction with user selection
+   * @param {Event Object} Callback Event Object
+   */
+  const keyDownHandler = (event) => {
+    if (event.keyCode === 27) {
       setSelectedUserId(-1);
     }
   }
@@ -115,7 +118,7 @@ const Form = () => {
       />
       {errorMessage && <div id="errorMsg" data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
       {selectedUserId < 0 ? null : 
-        <div>
+        <div id="inputFieldContainer">
           <Input
             label="Title"
             inputId="title"

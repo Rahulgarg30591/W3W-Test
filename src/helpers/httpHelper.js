@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const makeRequest = (requestInfo, successCallback, failueCallback) => {
-    // return axios.request(requestInfo.url, successCallback, failueCallback);
-
     let httpData = null;
 
     if (requestInfo.data) {

@@ -1,6 +1,7 @@
 import classes from "./FormControl.module.css";
 import { useEffect, useState } from "react";
 import makeRequest from "../../helpers/httpHelper";
+import apiUrl from "../../static/urlConfig";
 
 const FormControl = (props) => {
   const { label, selectedUserId, validationFunction, setErrorMessage } = props;
@@ -14,6 +15,7 @@ const FormControl = (props) => {
     const userResponse = [];
     data.map((user) => userResponse.push({ id: user.id, name: user.name }));
     setUserData(userResponse);
+    return userResponse;
   }
 
   /**
@@ -21,7 +23,7 @@ const FormControl = (props) => {
    */
   const fetchUsers = () => {
     const requestObj = {
-      url: "https://jsonplaceholder.typicode.com/users",
+      url: apiUrl.getUsers,
       method: 'get'
     };
     makeRequest(requestObj,successCallback, (err) => setErrorMessage(err.message));
@@ -31,11 +33,19 @@ const FormControl = (props) => {
     fetchUsers();
   }, []);
 
+  /**
+   * Click handler for user selection
+   * @param {Event Object} Callback Event Object
+   */
   const userClickHandler = (event) => {
     const id = parseInt(event.target.id, 10);
     validationFunction(id);
   };
 
+  /**
+   * Key down handler for keyboard interaction with user selection
+   * @param {Event Object} Callback Event Object
+   */
   const keyDownHandler = (event) => {
     if(event.keyCode && event.keyCode === 13) {
       userClickHandler(event);
@@ -60,12 +70,12 @@ const FormControl = (props) => {
   ));
 
   return (
-    <form className={classes.formControl}>
+    <div>
       <label>{label}</label>
       {userGroup && userGroup.length > 0 && (
         <div id="userGroup" data-testid="userGroup" className={classes.group96}>{userGroup}</div>
       )}
-    </form>
+    </div>
   );
 };
 

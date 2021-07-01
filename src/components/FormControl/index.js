@@ -14,6 +14,7 @@ const FormControl = (props) => {
     const userResponse = [];
     data.map((user) => userResponse.push({ id: user.id, name: user.name }));
     setUserData(userResponse);
+    return userResponse;
   }
 
   /**
@@ -60,12 +61,12 @@ const FormControl = (props) => {
   ));
 
   return (
-    <form className={classes.formControl}>
+    <div>
       <label>{label}</label>
       {userGroup && userGroup.length > 0 && (
         <div id="userGroup" data-testid="userGroup" className={classes.group96}>{userGroup}</div>
       )}
-    </form>
+    </div>
   );
 };
 

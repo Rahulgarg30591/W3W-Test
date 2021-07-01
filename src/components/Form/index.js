@@ -115,7 +115,7 @@ const Form = () => {
       />
       {errorMessage && <div id="errorMsg" data-testid="errorMsg" className={classes.error}>{errorMessage}</div>}
       {selectedUserId < 0 ? null : 
-        <div>
+        <div id="inputFieldcontainer">
           <Input
             label="Title"
             inputId="title"
